@@ -1,0 +1,68 @@
+Homework 4 assignment
+MAE143a: Embedded Control & Robotics, HW4 (SS1 2022)
+Due, as a single pdf, on friday at noon, uploaded to the canvas webpage for the course.
+
+1a. Given {a(s), b(s), f(s)}, one of the codes developed in class determines the general solution for {x(s), y(s)} that
+solves the Diophantine equation a(s)x(s) + b(s)y(x) = f(x), and in particular identifies the solution {x(s), y(s)} of
+this equation with the lowest-order y(s) possible. Using this code, design a Minimum Energy Stabilizing Controller
+D1(s) for the plant
+G(s) = (s + 2)(s − 2)(s + 4)(s − 4)
+(s + 1)(s − 1)(s + 3)(s − 3)(s + 5)(s − 5), (1)
+which puts the poles of the closed-loop system T (s) at the target f1(s) = (s + 1)(s + 1)(s + 3)(s + 3)(s + 5)(s + 5).
+Where are the poles and zeros of D1(s)? Is D1(s) strictly proper, semi-proper, or improper?
+
+1b. Repeat problem 1a to compute a controller D2(s), with the target for the poles of the closed-loop system
+modified to f2(s) = (s + 1)(s + 1)(s + 3)(s + 3)(s + 5)(s + 5)(s + 50)p
+, where p is taken to be sufficiently large that
+the resulting D2(s) is strictly proper. How large of a power p is required to achieve this? Where are the poles and
+zeros of D2(s)?
+
+1c. For question 1c, please simply provide a link to the (very short!) Matlab code that you used to solve problems
+1a and 1b, at your personal github repository. Make sure you type the address of this link correctly (try to
+make it “clickable” in the pdf, and make sure when you press the link it actually connects to the intended location!).
+
+2. Given the stereographic projection defining the Riemann sphere, with
+ζ = (x + iy)/(1 − z) where x
+2 + y
+2 + z
+2 = 1 and ζ = ζr + i ζi
+, (2a)
+show that |ζ|
+2 = ζ
+2
+r + ζ
+2
+i = (1 + z)/(1 − z), and (with this relation) then shown that
+z = (|ζ|
+2 − 1)/(|ζ|
+2 + 1), with x = ζr(1 − z) and y = ζi(1 − z). (2b)
+Noting these mappings, describe which points on the Riemann sphere correspond to |ζ|
+2 < 1, |ζ|
+2 = 1, and |ζ|
+2 > 1.
+For context: the injective forward mapping in (2b), from any complex ζ to a distinct {x, y, z} on the unit sphere,
+together with the injective inverse mapping (2a), from any {x, y, z} on the unit sphere excluding the north pole (with
+z = 1 and x = y = 0) to a distinct complex ζ, reveal that this stereographic projection is, in fact, bijective, defining
+a one-to-one correspondence between the complex plane and the unit sphere excluding the north pole.
+
+3. Assuming d = 0.1, for n = 1, 2, 4, and 8, plot (in the s plane) the roots of the numerator (with the symbol ’o’,
+referred to as zeros), and the roots of the denominator (with the symbol ’x’, referred to as poles), of the n’th order
+Pad´e approximation, Fn(s), of the delay function F(s) = e
+−d s. Plot the zeros and poles of Fn(s) on a separate plot
+for each of the four values of n requested. Discuss.
+
+4. Assuming L(s) = G(s) D(s) = K b(s)/a(s), where b(s) = bms
+m + . . . + b1s + b0 and a(s) = ans
+n + . . . + a1s + a0,
+the command to plot a root locus plot in Matlab is simply rlocus(tf([bm . . . b1 b0],[an . . . a1 a0])), where
+the bi and ai coefficients are replaced by the appropriate numbers for the problem at hand.
+
+4a. Taking G(s) = 1/s and D(s) = K, plot the root locus of the closed loop system using the above command; that
+is, simply using the command rlocus(tf([1],[1 0])).
+
+4b. Repeat problem 4a for G1(s) = F1(s)/s, G2(s) = F2(s)/s, G4(s) = F4(s)/s, and G8(s) = F8(s)/s, taking d = 0.1
+(see problem 3). Discuss. What value of the controller gain K in each case drives the system to instability? [Hint:
+when using Matlab’s rlocus command, clicking on any point on a branch of the locus illustrates the value of the
+gain K necessary to drive a root to that location on the locus. I’ll show the formula for how that works at our last
+lecture, it’s pretty simple.]
+4bb. Repeat problem 4b, taking d = 0.2. Discuss.
