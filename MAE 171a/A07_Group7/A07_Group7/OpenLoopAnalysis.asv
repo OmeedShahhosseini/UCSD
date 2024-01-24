@@ -25,7 +25,6 @@ for n = 1:5
     hold on
     plot(time, encoderSettle(n)*0.98*ones(1,length(time)));
     hold off
-    [y0(n)] = breakdown(encoder1(1:230,n), encoderSettle(n));
 end
 
 n = 3;
@@ -34,7 +33,7 @@ test2Ts = 0.673;
 test3Ts = 0.682;
 test4Ts = 0.682;
 test5Ts = 0.682;
-
+[y0] = breakdown(encoder1(1:230,n), encoderSettle(1));
 
 function [y0] = breakdown(StepR, Settle)
     binaryStep = sign(diff(StepR))
