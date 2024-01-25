@@ -47,6 +47,17 @@ for i = 1:length(t_0)
     n = 4;                                                                  %number of oscillations between t0 and tn
 end
 
+%% Mean Values for Mass
+t0 = mean(t0);
+y0 = mean(y0);
+tn = mean(tn);
+yn = mean(yn);
+yinf = mean(yinf);
+n = 4;
+format shortG
+disp('Average values across 5 tests used for calculations')
+disp(["t0"+t0 "y0" "tn" "yn" "yinf" "n"])
+disp([t0 y0 tn yn yinf n]);
 %% Visually Confirmed values for Mass 1 Settling time. 
 % test1Ts = 0.673;
 % test2Ts = 0.673;
@@ -64,18 +75,20 @@ function [t0,ts,n] = breakdown(encoder1, Settle, enc)
     n = 0;
     dub = 0;
     for i = 1:length(switchIndices)
-        if switchIndices(i+1) - switchIndices(i) == 1
-            dub = dub + 1;
-        end
         if encoder1(switchIndices(i),enc) > Settle
             %disp(encoder1(switchIndices(i),enc));
+            n = n+1;
+            % disp(encoder1(switchIndices(i),enc))
             if encoder1(switchIndices(i),enc) < Settle*1.02
                 ts = switchIndices(i);
                 break;
             end
         end
+        if switchIndices(i+1) - switchIndices(i) == 1
+            dub = dub + 1;
+        end
     end
-    disp(dub);
+    % disp(dub);
     n=n-dub;
 end
 

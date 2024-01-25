@@ -47,6 +47,16 @@ for i = 1:length(t_0)
     n = 4;                                                                  %number of oscillations between t0 and tn
 end
 
+%% Mean Values for Mass
+t0 = mean(t0);
+y0 = mean(y0);
+tn = mean(tn);
+yn = mean(yn);
+yinf = mean(yinf);
+n = 4;
+format shortG
+disp('Average values across 5 tests used for calculations')
+disp(mat2str(["t0="+t0 "y0="+y0 "tn="+tn "yn="+yn "yinf="+yinf "n="+n]))
 %% Visually Confirmed values for Mass 1 Settling time. 
 % test1Ts = 0.673;
 % test2Ts = 0.673;
