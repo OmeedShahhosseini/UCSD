@@ -19,13 +19,18 @@ for n = 1:5
     encoderSettle(n) = mean(encoder1(230:330,n));
     plot(time(:,n),encoder1(:,n));
     hold on
-    x = time(15);
-    line([x x], [-300 300]);
+    % x = time(15);
+    % line([x x], [-300 300]);
     plot(time, encoderSettle(n)*1.02*ones(1,length(time)));
     hold on
     plot(time, encoderSettle(n)*0.98*ones(1,length(time)));
     hold off
-    [y0(n)] = breakdown(encoder1(1:230,n), encoderSettle(n));
+    [t_0(n)] = breakdown(encoder1(1:230,n), encoderSettle(n));
+end
+
+for i = 1:length(t_0)
+    t0(i) = time(t_0(i));
+    y0(i) = encoder1(t_0(n),i);
 end
 
 n = 3;
@@ -36,11 +41,11 @@ test4Ts = 0.682;
 test5Ts = 0.682;
 
 
-function [y0] = breakdown(StepR, Settle)
-    binaryStep = sign(diff(StepR))
+function [t0] = breakdown(StepR, Settle)
+    binaryStep = sign(diff(StepR));
     signChanges = diff(binaryStep);
     switchIndices = find(signChanges ~= 0) + 1;
-    y0 = switchIndices(1);
+    t0 = switchIndices(1);
 end
 
    
