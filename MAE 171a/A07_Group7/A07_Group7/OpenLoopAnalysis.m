@@ -40,11 +40,11 @@ end
 
 for i = 1:length(t_0)
     t0(i) = time(t_0(i));                                                   %Overshoot Time [t0]
-    y0(i) = encoder1(t_0(1),i);                                             %Initial Overshoot Value [y0]
+    y0(i) = encoder1(t_0(i),i);                                             %Initial Overshoot Value [y0]
     tn(i) = time(ts(i));                                                    %Settling Time [tn]
-    yn(i) = encoder1(ts(1),i);                                              %Settling Peak [yn]
+    yn(i) = encoder1(ts(i),i);                                              %Settling Peak [yn]
     yinf(i) = mean(encoder1(230:330,i));                                    %Settling Value [yinf]
-    n = 4;                                                                  %number of oscillations between t0 and tn
+    n = 3;                                                                  %number of oscillations between t0 and tn
 end
 
 %% Mean Values for Mass
