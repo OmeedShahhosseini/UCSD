@@ -3,20 +3,20 @@ close all
 clc
 
 %% Import Data from Mass 1 Tests
-test1 = readtable("mass_1_test_1.txt");
-test2 = readtable("mass_1_test_2.txt");
-test3 = readtable("mass_1_test_3.txt");
-test4 = readtable("mass_1_test_4.txt");
-test5 = readtable("mass_1_test_5.txt");
-e = [3,4];
+% test1 = readtable("mass_1_test_1.txt");
+% test2 = readtable("mass_1_test_2.txt");
+% test3 = readtable("mass_1_test_3.txt");
+% test4 = readtable("mass_1_test_4.txt");
+% test5 = readtable("mass_1_test_5.txt");
+% e = [3,4];
 
 %% Import Data from Mass 2 Tests
-% test1 = readtable("mass_2_test_1.txt");
-% test2 = readtable("mass_2_test_2.txt");
-% test3 = readtable("mass_2_test_3.txt");
-% test4 = readtable("mass_2_test_4.txt");
-% test5 = readtable("mass_2_test_5.txt");
-% e = [3,5];
+test1 = readtable("mass_2_test_1.txt");
+test2 = readtable("mass_2_test_2.txt");
+test3 = readtable("mass_2_test_3.txt");
+test4 = readtable("mass_2_test_4.txt");
+test5 = readtable("mass_2_test_5.txt");
+e = [3,5];
 
 %% Set arrays for Time and Encoder 1 values
 m = e(1,1);
@@ -30,50 +30,39 @@ encoder1 = [table2array(test1(2:end,m)) table2array(test2(2:end,m)) table2array(
 encoderSettle = zeros(1,5);
 for n = 1:5
     encoderSettle(n) = mean(encoder1(230:330,n));
-    [t_0(n), ts(n), num(n)] = breakdown(encoder1, encoderSettle(n), n);
-    subplot(5,1,n);
-    plot(time(1:300,n),encoder1(1:300,n));
+    % [t_0(n), ts(n), num(n)] = breakdown(encoder1, encoderSettle(n), n);
+    figure();
+    plot(time(1:end,n),encoder1(:,n));
     hold on
-    y = time(ts(n));
-    title("Five System Responses to 0.5V Input "+"Run:"+mat2str(n));
-    line([encoderSettle(n)],[]);
+    % x = time(ts(n));
     % line([x x], [-300 300]);
     % plot(time, encoderSettle(n)*1.02*ones(1,length(time)));
     % hold on
     % plot(time, encoderSettle(n)*0.98*ones(1,length(time)));
-    hold off
+    % hold off
 end
 
-for i = 1:length(encoder1)
-    encoder1avg(i) = mean(encoder1(i,:));
-end
-figure;
-plot(time(:,1),encoder1avg);
-hold on
+% for i = 1:length(t_0)
+%     t0(i) = time(t_0(i));                                                   %Overshoot Time [t0]
+%     y0(i) = encoder1(t_0(i),i);                                             %Initial Overshoot Value [y0]
+%     tn(i) = time(ts(i));                                                    %Settling Time [tn]
+%     yn(i) = encoder1(ts(i),i);                                              %Settling Peak [yn]
+%     yinf(i) = mean(encoder1(230:330,i));                                    %Settling Value [yinf]
+%     n = 3;                                                                  %number of oscillations between t0 and tn
+% end
 
-for i = 1:length(t_0)
-    t0(i) = time(t_0(i));                                                   %Overshoot Time [t0]
-    y0(i) = encoder1(t_0(i),i);                                             %Initial Overshoot Value [y0]
-    tn(i) = time(ts(i));                                                    %Settling Time [tn]
-    yn(i) = encoder1(ts(i),i);                                              %Settling Peak [yn]
-    yinf(i) = mean(encoder1(230:330,i));                                    %Settling Value [yinf]
-    n = 3;                                                                  %number of oscillations between t0 and tn
-end
-    % plot(time(:,1),encoder1(:,1));
-    % deltaT = time(ts(1))-time(t_0(1));
-    B_omega = (1/(0.682-0.133))*log((280.2-181.2)/(182.8-181.2));
-    hold on
-    plot(time,(300*exp(-B_omega*time))+181.2);
+
+
 %% Mean Values for Mass
 % t0 = mean(t0);
 % y0 = mean(y0);
 % tn = mean(tn);
 % yn = mean(yn);
 % yinf = mean(yinf);
-n = 3;
-format shortG
-disp('Average values across 5 tests used for calculations')
-disp(mat2str(["t0="+t0 "y0="+y0 "tn="+tn "yn="+yn "yinf="+yinf "n="+n]))
+% n = 4;
+% format shortG
+% disp('Average values across 5 tests used for calculations')
+% disp(mat2str(["t0="+t0 "y0="+y0 "tn="+tn "yn="+yn "yinf="+yinf "n="+n]))
 %% Visually Confirmed values for Mass 1 Settling time. 
 % test1Ts = 0.673;
 % test2Ts = 0.673;
@@ -106,7 +95,6 @@ function [t0,ts,n] = breakdown(encoder1, Settle, enc)
     end
     % disp(dub);
     n=n-dub;
-    % disp(switchIndices);
 end
 
    
