@@ -35,12 +35,16 @@ for n = 1:5
     plot(time(1:300,n),encoder1(1:300,n));
     hold on
     y = time(ts(n));
-    title(["Five System Responses to 0.5V Input "+"Run:"+mat2str(n)]);
+    % title(["Five System Responses to 0.5V Input "+"Run:"+mat2str(n)]);
     % line([encoderSettle(n)]);
+    % x = encoderSettle(n);
     % line([x x], [-300 300]);
     % plot(time, encoderSettle(n)*1.02*ones(1,length(time)));
     % hold on
     % plot(time, encoderSettle(n)*0.98*ones(1,length(time)));
+    title(['Open Loop Step Response of Encoder 1 Run: ' mat2str(n)]);
+    xlabel('time (s)');
+    ylabel("Position (counts)");
     hold off
 end
 

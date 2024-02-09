@@ -14,9 +14,9 @@
 % EDIT THE PARAMETERS OF YOUR MODEL IN THE DEFAULT FILE PARAMETERS.M
 % SEE MAE171A LAB MANUAL FOR DETAILS
 
-clc;
-clear all;
-close all;
+% clc;
+% clear all;
+% close all;
 
 drawnow;
 format compact
