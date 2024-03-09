@@ -387,14 +387,14 @@ if option==1,
    l=semilogx(f,20*log10(mag));
    set(l,'linewidth',1.5);
    title(plttitle)
-   xlabel('frequency [Hz]');
-   ylabel('magnitude [dB]')
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('magnitude [dB]', FontSize=14)
    grid
    subplot(2,1,2);
    l=semilogx(f,pha);
    set(l,'linewidth',1.5);   
-   xlabel('frequency [Hz]');
-   ylabel('phase [deg]');
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('phase [deg]', FontSize=14);
    grid
    disp(['- Figure 1: ' plttitle])   
    
@@ -547,11 +547,11 @@ if option==2,
        legend('simulated step response')
    end
    title(plttitle);
-   xlabel('time [sec]');
+   xlabel('time [sec]', FontSize=14);
    if encoderout==1,
-       ylabel('encoder 1 [counts]')
+       ylabel('encoder 1 [counts]', FontSize=14)
    else
-       ylabel('encoder 2 [counts]')
+       ylabel('encoder 2 [counts]', FontSize=14)
    end
    disp(['- Figure 2: ' plttitle]);
 
@@ -723,8 +723,8 @@ if option==3,
         legend('simulated sinsoidal response');
     end
    title(plttitle);
-   xlabel('time [sec]');
-   ylabel('output signals [counts]')
+   xlabel('time [sec]', FontSize=14);
+   ylabel('output signals [counts]', FontSize=14)
    disp(['- Figure 2: ' plttitle]);
 
 end
@@ -895,8 +895,8 @@ if option==4,
         legend('simulated impulse response');
     end
    title(plttitle);
-   xlabel('time [sec]');
-   ylabel('output signals [counts]')
+   xlabel('time [sec]', FontSize=14);
+   ylabel('output signals [counts]', FontSize=14)
    disp(['- Figure 2: ' plttitle]);
 
 end
@@ -1052,14 +1052,14 @@ else
    l=loglog(f,magc);
    set(l,'linewidth',1.5);
    title(plttitle)
-   xlabel('frequency [Hz]');
-   ylabel('magnitude')
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('magnitude', FontSize=14)
 
    subplot(2,1,2);
    l=semilogx(f,phac);
    set(l,'linewidth',1.5);   
-   xlabel('frequency [Hz]');
-   ylabel('phase [deg]');
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('phase [deg]', FontSize=14);
    disp(['- Figure 3: ' plttitle]) 
 
    %
@@ -1079,8 +1079,8 @@ else
    set(l,'linewidth',1.5);   
    hold off
    title('magnitude L(s)')
-   xlabel('frequency [Hz]');
-   ylabel('magnitude')
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('magnitude', FontSize=14)
    
    axiss=axis;
    axis([f(1) f(length(f)) axiss(3) axiss(4)]);
@@ -1094,8 +1094,8 @@ else
    set(l,'linewidth',1.5);   
    hold off
    title('Nyquist contour L(s)')
-   xlabel('real')
-   ylabel('imag')
+   xlabel('real', FontSize=14)
+   ylabel('imag', FontSize=14)
    text(-5.5,5,'L(s)=G(s)*C(s)','HorizontalAlignment','center')
 
    subplot(2,2,3);
@@ -1105,8 +1105,8 @@ else
    l=semilogx([f(1) f(length(f))],[-180 -180],'k:');
    set(l,'linewidth',1.5);   
    hold off
-   xlabel('frequency [Hz]');
-   ylabel('phase [deg]');
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('phase [deg]', FontSize=14);
    title('phase L(s)')
    axiss=axis;
    axis([f(1) f(length(f)) axiss(3) axiss(4)]);
@@ -1119,8 +1119,8 @@ else
    set(l,'linewidth',1.5);   
    hold off
    title('magnitude L(s)/(1+L(s))  [r(s) -> y(s)]')
-   xlabel('frequency [Hz]');
-   ylabel('magnitude')
+   xlabel('frequency [Hz]', FontSize=14);
+   ylabel('magnitude', FontSize=14)
    axiss=axis;
    axis([f(1) f(length(f)) axiss(3) axiss(4)]);
 
@@ -1476,12 +1476,12 @@ if option==6,
                 legend('commanded reference','simulated closed-loop step');
             end
           title(plttitle);
-          ylabel('output & reference [counts]')
+          ylabel('output & reference [counts]', FontSize=14)
           subplot(2,1,2);
           l=plot(cltstep,ustepcl,t,u,'r:');
           set(l,'linewidth',1.5);          
-          xlabel('time [sec]');
-          ylabel('control signal [V]')
+          xlabel('time [sec]', FontSize=14);
+          ylabel('control signal [V]', FontSize=14)
           if usethiscontrol==0,
             title(['Control signal for kp = ' num2str(kp) ', kd = ' num2str(kd) ', ki = ' num2str(ki)]);
           else
