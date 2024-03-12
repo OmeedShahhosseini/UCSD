@@ -84,8 +84,8 @@ cleanedImage = bwareaopen(verticalLines, 1000);
 resultImage = cleanedImage;
 % resultImage = binaryImage;
 % Display the original binary image and the result
-imshow(imcrop(croprgb,[1 1 size(binary,2) 1401])), title('Image Processed');
-% imshow(imcrop(resultImage,[1 1 size(binary,2) 1401])), title('Image Processed');
+imshow(imcrop(croprgb,[1 1 size(binary,2) 1401]));
+% imshow(imcrop(resultImage,[1 1 size(binary,2) 1401]));
 % Trace the boundary
 [startRow, startCol] = find(resultImage, 1);
 boundary = bwtraceboundary(resultImage, [67, 2], 'N');
@@ -99,6 +99,10 @@ eigboundary = bwtraceboundary(resultImage, [820, 68], 'N');
 ninboundary = bwtraceboundary(resultImage, [929, 2], 'N');
 tenboundary = bwtraceboundary(resultImage, [949, 1771], 'N');
 eleboundary = bwtraceboundary(resultImage, [1067, 207], 'N');
+tweboundary = bwtraceboundary(resultImage, [1051, 1795], 'N');
+thiboundary = bwtraceboundary(resultImage, [1154, 1786], 'N');
+frtboundary = bwtraceboundary(resultImage, [1239, 176], 'N');
+fftboundary = bwtraceboundary(resultImage, [1348, 90], 'N');
 % boundary8 = bwtraceboundary(resultImage, [823, 81], 'N');
 % figure()
 axis equal;
@@ -168,6 +172,28 @@ boundary = eleboundary;
 boundary19(:,2)= boundary(1:2000,2);
 boundary19(:,1) = smooth(boundary(1:2000,1),0.2,'rloess');
 
+boundary = tweboundary;
+boundary20(:,2)= boundary(1:1900,2);
+boundary20(:,1) = smooth(boundary(1:1900,1),0.2,'rloess');
+boundary21(:,2) = flip(boundary(2000:3800,2));
+boundary21(:,1) = smooth(flip(boundary(2000:3800,1)),0.2,'rloess');
+
+boundary = thiboundary;
+boundary22(:,2)= boundary(1:1700,2);
+boundary22(:,1) = smooth(boundary(1:1700,1),0.2,'rloess');
+% boundary23(:,2) = flip(boundary(2000:3800,2));
+% boundary23(:,1) = smooth(flip(boundary(2000:3800,1)),0.2,'rloess');
+
+boundary = frtboundary;
+boundary24(:,2)= flip(boundary(1:1800,2));
+boundary24(:,1) = smooth(flip(boundary(1:1800,1)),0.2,'rloess');
+boundary25(:,2) = flip(boundary(2200:3800,2));
+boundary25(:,1) = smooth(flip(boundary(2200:3800,1)),0.2,'rloess');
+
+boundary = fftboundary;
+boundary26(:,2)= boundary(1:1800,2);
+boundary26(:,1) = smooth(boundary(1:1800,1),0.2,'rloess');
+
 %% Average of boundaries
 avg1 = smooth((boundary2(:,1) + boundary3(1:length(boundary2),1))./2, 0.05);
 avg2 = smooth((boundary4(1:length(boundary5),1) + boundary5(:,1))./2, 0.1);
@@ -178,6 +204,9 @@ avg6 = (boundary12(1:400,1) + boundary13(1:400,1))./2;
 avg7 = (boundary14(1:(1600-116),1) + boundary15(117:1600,1))./2;
 avg8 = (boundary16(:,1) + boundary17(1:length(boundary16),1))./2;
 avg9 = (boundary18(:,1) + boundary19(1:length(boundary18),1))./2;
+avg10 = (boundary20(1:length(boundary21),1) + boundary21(:,1))./2;
+avg11 = (boundary22(:,1) + boundary24(1:length(boundary22),1))./2;
+avg12 = (boundary25(:,1) + boundary26(1:length(boundary25),1))./2;
 
 
 plot(smooth(boundary1(:,2),.2), smooth(boundary1(:,1),0.2), 'r', 'LineWidth', 2);
@@ -231,13 +260,35 @@ plot(smooth(boundary16(:,2),.2), smooth(avg8,.08),'b', 'LineWidth', 4);
 plot(smooth(boundary17(:,2),.2), smooth(boundary17(:,1),.1), 'r', 'LineWidth', 2);
 plot(smooth(boundary18(:,2),.2), smooth(boundary18(:,1),.1), 'r', 'LineWidth', 2);
 
-%STREAMLINE 8
+%STREAMLINE 9
 plot(smooth(boundary18(:,2),.2), smooth(avg9,.08),'b', 'LineWidth', 4);
 
 plot(smooth(boundary19(:,2),.2), smooth(boundary19(:,1),.1), 'r', 'LineWidth', 2);
+plot(smooth(boundary20(:,2),.2), smooth(boundary20(:,1),.1), 'r', 'LineWidth', 2);
+
+%STREAMLINE 10
+plot(smooth(boundary21(:,2),.2), smooth(avg10,.08),'b', 'LineWidth', 4);
+
+plot(smooth(boundary21(:,2),.2), smooth(boundary21(:,1),.1), 'r', 'LineWidth', 2);
+plot(smooth(boundary22(:,2),.2), smooth(boundary22(:,1),.1), 'r', 'LineWidth', 2);
+
+%STREAMLINE 11
+plot(smooth(boundary22(:,2),.2), smooth(avg11,.08),'b', 'LineWidth', 4);
+
+% plot(smooth(boundary23(:,2),.2), smooth(boundary23(:,1),.1), 'r', 'LineWidth', 2);
+plot(smooth(boundary24(:,2),.2), smooth(boundary24(:,1),.1), 'r', 'LineWidth', 2);
+plot(smooth(boundary25(:,2),.2), smooth(boundary25(:,1),.1), 'r', 'LineWidth', 2);
+
+%STREAMLINE 12
+plot(smooth(boundary25(:,2),.2), smooth(avg12,.08),'b', 'LineWidth', 4);
+
+plot(smooth(boundary26(:,2),.2), smooth(boundary26(:,1),.1), 'r', 'LineWidth', 2);
+
 % plot(boundary7(:,2), boundary7(:,1), 'r', 'LineWidth', 2);
-% plot(boundary14(:,2), boundary14(:,1), 'r', 'LineWidth', 2);
-% plot(boundary15(:,2), boundary15(:,1), 'r', 'LineWidth', 2);
+% plot(boundary22(:,2), boundary22(:,1), 'r', 'LineWidth', 2);
+% plot(boundary23(:,2), boundary23(:,1), 'r', 'LineWidth', 2);
+
+
 
 
 hold off;
