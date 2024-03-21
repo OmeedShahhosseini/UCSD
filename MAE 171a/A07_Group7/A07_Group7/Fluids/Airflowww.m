@@ -1,6 +1,6 @@
 clear; close all; clc;
 
-img_file= 'OG Airflow11.png';
+img_file= 'Airflow1.png';
 myrgb = imread(img_file);
 imrgb = (myrgb);
 figure(1)
@@ -27,7 +27,7 @@ end
 airfoilBinary = binary;
 
 
-img_file= 'OG Airflow 1.jpg';
+img_file= 'AirflowOG.jpg';
 croprgb = imread(img_file);
 myrgb = croprgb;
 imrgb = (croprgb);
@@ -78,6 +78,9 @@ x=[1:length(binary(1,:))]; % define a continuous x vector
 unqrow=row(ia); % reduce the rows to only unique elements
 unqcol=col(ia); % reduce the columns to only unique elements
 
+imshow(airfoilBinary)
+se = strel('disk', 4);
+airfoilBinary = imdilate(airfoilBinary,se);
 flippedOut = xor(airfoilBinary, 1);
 binary = binary.*flippedOut;
 binary = imgaussfilt(binary, 1);
